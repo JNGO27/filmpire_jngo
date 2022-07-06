@@ -1,9 +1,31 @@
 import React from 'react';
+import { CssBaseline } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import useStyles from './styles';
+
+import { Actors, MovieInformation, Movies, NavBar, Profile } from "./";
 
 const App = () => {
-  <div>
-    App
-  </div>;
-};
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root}>
+    <CssBaseline />
+    <NavBar />
+    <main className={classes.content}>
+      <div className={classes.tootlbar} />
+      <Router>
+        <Routes>
+          <Route exact path="/movie/:id" element={<MovieInformation />}></Route>
+          <Route exact path="/actors/:id" element={<Actors />}></Route>
+          <Route exact path="/" element={<Movies />}></Route>
+          <Route exact path="/profile/:id" element={<Profile />}></Route>
+        </Routes>
+      </Router>
+    </main>
+    </div>
+  );
+}
 
 export default App;
